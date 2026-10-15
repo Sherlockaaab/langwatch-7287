@@ -141,7 +141,7 @@ const SOURCE_TYPE_OPTIONS: Array<{
     label: "Anthropic Admin API (usage & cost)",
     mode: "pull",
     blurb:
-      "Polls Anthropic's organization usage/cost reports with an Admin API key (sk-ant-admin-...). Pick ONE report per source: usage (token counts, we price them) or cost (invoice amounts, carried verbatim). Never create both for the same org — the same spend would be counted twice.",
+      "Polls Anthropic's organization usage/cost reports with an Admin API key (sk-ant-admin-...). Pick ONE report per source: usage (token counts, we price them) or cost (Anthropic's reported spend, excludes Priority Tier). Never create both for the same org — the same spend would be counted twice.",
   },
   {
     value: "databricks_genie",
@@ -1347,7 +1347,7 @@ export const PARSER_FIELDS: Record<SourceType, FieldDef[]> = {
       key: "report",
       label: "Report (usage or cost)",
       placeholder: "cost",
-      hint: "Exactly one per source. `cost` carries Anthropic's invoice amounts verbatim; `usage` pulls token counts that we price ourselves. Never create both reports for the same organization — the same spend would be counted twice.",
+      hint: "Exactly one per source. `cost` carries Anthropic's own reported spend (Priority Tier usage is excluded, so it is close to but not the invoice); `usage` pulls token counts that we price ourselves. Never create both reports for the same organization — the same spend would be counted twice.",
       required: true,
     },
     {
